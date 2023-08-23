@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
-import { Button, Card, Box } from "@mui/material";
+import { Button, Card, TableBody, TableRow, TableCell } from "@mui/material";
 import '../App.css';
 
 const WakeUpTimePage = () => {
@@ -17,7 +16,7 @@ const WakeUpTimePage = () => {
     }, [date]);
     
     let updateWakeTimes = async () => {
-        const arr = [addHoursAndMinute(date, 4, 30), addHoursAndMinute(date, 6, 0), addHoursAndMinute(date, 7, 30), addHoursAndMinute(date, 9, 0)];
+        const arr = [addHoursAndMinute(date, 4, 44), addHoursAndMinute(date, 6, 14), addHoursAndMinute(date, 7, 44), addHoursAndMinute(date, 9, 14)];
         setWakeTimes(arr);
     }
 
@@ -48,11 +47,11 @@ const WakeUpTimePage = () => {
 
     return (
         <div>
-            <p className='Page-title'>
+            <p className='Page-title' style={{ marginTop: '0px'}}>
                 Wake Up Time
             </p>
 
-            <div style={{display: 'flex', justifyContent: 'center', paddingBottom: '5px'}}>
+            <div className='Center-div' style={{paddingBottom: '5px', marginTop: '-30px'}}>
                 <Card>
                     <p className='Time-text'>
                         {displayTime(date)}
@@ -60,27 +59,31 @@ const WakeUpTimePage = () => {
                 </Card>
             </div>
 
-            <Box textAlign='center' >
+            <div className='Center-div'>
                 <Button variant='contained' color='primary'>Change time</Button>
-            </Box>
+            </div>
 
-            <Box textAlign='center'>
+            <div className='Center-div'>
                 <p className='Info-text'>
-                    Below are the best times to wake up according to the body's sleep cycle.
-                    Note that the average person takes 14 minutes to fall asleep.
-                    <br/>
-                    <br/>
-                    (Have a time to wake up? Head over to the <Link className='App.link' to="/sleep">the sleepytime page</Link>)
+                    Below are the best times to wake up at according to the human body's sleep cycle.
+                    {
+                    //<Link className='App.link' to="/sleep">the sleepytime page</Link>
+                    }
                 </p>
-            </Box>
+            </div>
 
-            <div>
-                {wakeTimes.map(time => 
-                    <p className='Display-time'>
-                        <br/>
-                        {displayTime(time) + ' (' + (isSameDay(time, date) ? 'Same Day' : 'Next Day') + ')'} 
-                    </p>)
-                }
+            <div className='Center-div' style={{marginTop: '-30px'}}>
+                <TableBody>
+                    {wakeTimes.map((time) => (
+                        <TableRow>
+                            <TableCell>
+                                <p className='Display-time'>
+                                    {displayTime(time) + ' (' + (isSameDay(time, date) ? 'Same Day' : 'Next Day') + ')'} 
+                                </p>
+                            </TableCell>
+                        </TableRow>
+                    ))}
+                </TableBody>
             </div>
             
         </div>
