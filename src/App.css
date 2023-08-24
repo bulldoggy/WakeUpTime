@@ -8,14 +8,14 @@
 }
 
 .App-header {
-  background-color: #f4c2c2;
+  background-color: #4579ac;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: rgb(223, 218, 218);
 }
 
 .App-link {
@@ -36,7 +36,8 @@
 }
 
 .Info-text {
-  font-size: 16px;
+  font-size: 14px;
+  width: 80%;
   color: #000;
   text-align: center;
 }
@@ -44,11 +45,44 @@
 .Display-time {
   font-size: 25px;
   text-align: center;
-  color: black;
+  color: rgb(223, 218, 218);
   font-weight: bold;
+}
+
+.Display-same-day {
+  font-size: 15px;
+  text-align: center;
+  color: rgb(223, 218, 218);
+  font-weight: 200;
+}
+
+.Display-hours-slept {
+  font-size: 18px;
+  text-align: center;
+  color: rgb(223, 218, 218);
+  font-weight: 300;
 }
 
 .Center-div {
   display: flex;
+  justify-content: center;
+}
+
+.Bordered-div {
+  border-style: solid;
+  border-radius: 10px;
+  border-width: 3px;
+  border-color: darkgray;
+  width: 150%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.Times-container-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
 }

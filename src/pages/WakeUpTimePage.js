@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Card, TableBody, TableRow, TableCell } from "@mui/material";
+import { Card } from "@mui/material";
 import '../App.css';
 
 const WakeUpTimePage = () => {
     let [date, setDate] = useState(new Date());
     let [wakeTimes, setWakeTimes] = new useState([]);
+    let hoursSlept = ['3.0', '4.5', '6.0', '7.5', '9.0'];
     
     useEffect(() => {
         setDate(new Date());
@@ -12,11 +13,16 @@ const WakeUpTimePage = () => {
 
     useEffect(() => {
         updateWakeTimes();
-        console.log('waketimes: ' + wakeTimes);
     }, [date]);
     
     let updateWakeTimes = async () => {
-        const arr = [addHoursAndMinute(date, 4, 44), addHoursAndMinute(date, 6, 14), addHoursAndMinute(date, 7, 44), addHoursAndMinute(date, 9, 14)];
+        const arr = [
+            addHoursAndMinute(date, 3, 14), 
+            addHoursAndMinute(date, 4, 44), 
+            addHoursAndMinute(date, 6, 14), 
+            addHoursAndMinute(date, 7, 44), 
+            addHoursAndMinute(date, 9, 14)
+        ];
         setWakeTimes(arr);
     }
 
@@ -47,20 +53,16 @@ const WakeUpTimePage = () => {
 
     return (
         <div>
-            <p className='Page-title' style={{ marginTop: '0px'}}>
+            <p className='Page-title'>
                 Wake Up Time
             </p>
 
-            <div className='Center-div' style={{paddingBottom: '5px', marginTop: '-30px'}}>
+            <div className='Center-div'>
                 <Card>
                     <p className='Time-text'>
                         {displayTime(date)}
                     </p>
                 </Card>
-            </div>
-
-            <div className='Center-div'>
-                <Button variant='contained' color='primary'>Change time</Button>
             </div>
 
             <div className='Center-div'>
@@ -72,18 +74,22 @@ const WakeUpTimePage = () => {
                 </p>
             </div>
 
-            <div className='Center-div' style={{marginTop: '-30px'}}>
-                <TableBody>
-                    {wakeTimes.map((time) => (
-                        <TableRow>
-                            <TableCell>
-                                <p className='Display-time'>
-                                    {displayTime(time) + ' (' + (isSameDay(time, date) ? 'Same Day' : 'Next Day') + ')'} 
-                                </p>
-                            </TableCell>
-                        </TableRow>
-                    ))}
-                </TableBody>
+            <div className='Center-div'>
+                <div className='Times-container-div'>
+                {wakeTimes.map((time, i) => (
+                    <div className='Bordered-div'>
+                        <p className='Display-hours-slept'>
+                            {hoursSlept[i]}hr 
+                        </p>
+                        <p className='Display-time'>
+                            {time === undefined ? '' : displayTime(time)} 
+                        </p>
+                        <p className='Display-same-day'>
+                            {isSameDay(time, date) ? 'Same Day' : 'Next Day'} 
+                        </p>
+                    </div>
+                ))}
+                </div>
             </div>
             
         </div>
