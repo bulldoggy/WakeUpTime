@@ -6,7 +6,7 @@ import '../App.css';
 const WakeUpTimePage = () => {
     let [date, setDate] = useState(new Date());
     let [wakeTimes, setWakeTimes] = new useState([]);
-    let hoursSlept = ['3.0', '4.5', '6.0', '7.5', '9.0'];
+    let hoursSlept = ['20', '60', '90'];
     
     useEffect(() => {
         setDate(new Date());
@@ -18,11 +18,9 @@ const WakeUpTimePage = () => {
     
     let updateWakeTimes = async () => {
         const arr = [
-            addHoursAndMinute(date, 3, 14), 
-            addHoursAndMinute(date, 4, 44), 
-            addHoursAndMinute(date, 6, 14), 
-            addHoursAndMinute(date, 7, 44), 
-            addHoursAndMinute(date, 9, 14)
+            addHoursAndMinute(date, 0, 34), 
+            addHoursAndMinute(date, 1, 14), 
+            addHoursAndMinute(date, 1, 44)
         ];
         setWakeTimes(arr);
     }
@@ -55,7 +53,7 @@ const WakeUpTimePage = () => {
     return (
         <div>
             <p className='Page-title'>
-                Wake Up Time
+                Nappy Time
             </p>
 
             <div className='Center-div'>
@@ -71,7 +69,7 @@ const WakeUpTimePage = () => {
                     {
                     //Below are the best times to wake up at according to the human body's sleep cycle.
                     }
-                    Taking a nap? Head over to <Link className='App.link' to="/nap">the nappytime page</Link>.
+                    Return to <Link className='App.link' to="/">the wakeuptime page</Link>.
                 </p>
             </div>
 
@@ -80,7 +78,7 @@ const WakeUpTimePage = () => {
                 {wakeTimes.map((time, i) => (
                     <div className='Bordered-div'>
                         <p className='Display-hours-slept'>
-                            {hoursSlept[i]}hr 
+                            {hoursSlept[i]}min 
                         </p>
                         <p className='Display-time'>
                             {time === undefined ? '' : displayTime(time)} 

@@ -7,7 +7,7 @@ import {
   Route,
 } from "react-router-dom";
 import WakeUpTimePage from './pages/WakeUpTimePage';
-import SleepyTimePage from './pages/SleepyTimePage';
+import NappyTimePage from './pages/NappyTimePage';
 
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
       <Router>
         <Routes>
           <Route exact path="/" element={<WakeUpTimePage />} />
-          <Route exact path="/sleep" element={<SleepyTimePage />} />
+          <Route exact path="/nap" element={<NappyTimePage />} />
         </Routes>
       </Router>
     </div>
