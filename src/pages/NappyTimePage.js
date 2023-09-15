@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Card } from "@mui/material";
 import '../App.css';
+import TimeField from 'react-simple-timefield';
 
 const WakeUpTimePage = () => {
     let [date, setDate] = useState(new Date());
@@ -34,6 +34,15 @@ const WakeUpTimePage = () => {
         return dateResult;
     }
 
+    function updateHoursAndMinute(dateCopy, hours, minutes) {
+        const dateResult = new Date(dateCopy.getTime());
+
+        dateResult.setMinutes(minutes);
+        dateResult.setHours(hours);
+
+        return dateResult;
+    }
+
     function isSameDay(sleepDate, wakeDate) {
         if(sleepDate.getDay() === wakeDate.getDay()) {
             return true;
@@ -47,7 +56,13 @@ const WakeUpTimePage = () => {
     }
     
     function displayTime(date) {
-        return pad(date.getHours()) + ' : ' + pad(date.getMinutes());
+        return pad(date.getHours()) + ':' + pad(date.getMinutes());
+    }
+
+    function onTimeChange(value) {
+        const hours = value.substring(0, 2);
+        const minutes = value.substring(3, 5)
+        setDate(updateHoursAndMinute(date, hours, minutes));
     }
 
     return (
@@ -57,18 +72,21 @@ const WakeUpTimePage = () => {
             </p>
 
             <div className='Center-div'>
-                <Card>
-                    <p className='Time-text'>
-                        {displayTime(date)}
-                    </p>
-                </Card>
+                <TimeField
+                    value={displayTime(date)}
+                    onChange={onTimeChange}
+                    style={{
+                        border: '2px solid #666',
+                        fontSize: 50,
+                        width: 130,
+                        color: '#333',
+                        borderRadius: 3
+                    }}
+                />
             </div>
 
             <div className='Center-div'>
                 <p className='Info-text'>
-                    {
-                    //Below are the best times to wake up at according to the human body's sleep cycle.
-                    }
                     Return to <Link className='App.link' to="/">the wakeuptime page</Link>.
                 </p>
             </div>
