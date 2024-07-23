@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
 import TimeField from 'react-simple-timefield';
+import boybear from '../boybear.jpeg';
+import girlbear from '../girlbear.jpeg';
+import pinkbunny from '../pinkbunny.jpeg';
+
 
 const WakeUpTimePage = () => {
     let [date, setDate] = useState(new Date());
@@ -68,50 +72,58 @@ const WakeUpTimePage = () => {
     }
 
     return (
-        <div>
-            <p className='Page-title'>
-                Wake Up Time
-            </p>
-
-            <div className='Center-div'>
-                <TimeField
-                    value={displayTime(date)}
-                    onChange={onTimeChange}
-                    style={{
-                        border: '2px solid #666',
-                        fontSize: 50,
-                        width: 130,
-                        color: '#333',
-                        borderRadius: 3
-                    }}
-                />
+        <>
+            <div style={{width:'80%', display:'flex', flexDirection:'row', justifyContent:'space-around'}}>
+                <img src={girlbear} height={100} alt="girlbear" />
+                <img src={pinkbunny} height={100} alt="pinkbunny" />
+                <img src={boybear} height={100} alt="boybear" />
             </div>
 
-            <div className='Center-div'>
-                <p className='Info-text'>
-                    Taking a nap? Head over to <Link className='App.link' to="/nap">the nappytime page</Link>.
+            <div>
+
+                <p className='Page-title'>
+                    Wake Up Time
                 </p>
-            </div>
 
-            <div className='Center-div'>
-                <div className='Times-container-div'>
-                {wakeTimes.map((time, i) => (
-                    <div className='Bordered-div'>
-                        <p className='Display-hours-slept'>
-                            {hoursSlept[i]}hr 
-                        </p>
-                        <p className='Display-time'>
-                            {time === undefined ? '' : displayTime(time)} 
-                        </p>
-                        <p className='Display-same-day'>
-                            {isSameDay(time, date) ? 'Same Day' : 'Next Day'} 
-                        </p>
+                <div className='Center-div'>
+                    <TimeField
+                        value={displayTime(date)}
+                        onChange={onTimeChange}
+                        style={{
+                            border: '2px solid #666',
+                            fontSize: 50,
+                            width: 130,
+                            color: '#333',
+                            borderRadius: 3
+                        }}
+                    />
+                </div>
+
+                <div className='Center-div'>
+                    <p className='Info-text'>
+                        Taking a nap? Head over to <Link className='App.link' to="/nap">the nappytime page</Link>.
+                    </p>
+                </div>
+
+                <div className='Center-div'>
+                    <div className='Times-container-div'>
+                    {wakeTimes.map((time, i) => (
+                        <div className='Bordered-div'>
+                            <p className='Display-hours-slept'>
+                                {hoursSlept[i]}hr 
+                            </p>
+                            <p className='Display-time'>
+                                {time === undefined ? '' : displayTime(time)} 
+                            </p>
+                            <p className='Display-same-day'>
+                                {isSameDay(time, date) ? 'Same Day' : 'Next Day'} 
+                            </p>
+                        </div>
+                    ))}
                     </div>
-                ))}
                 </div>
             </div>
-            
-        </div>
+        </>
     )
 }
 
