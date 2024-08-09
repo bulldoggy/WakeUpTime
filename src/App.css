@@ -8,7 +8,7 @@
 }
 
 .App-header {
-  background-color: #a94064;
+  background-color: #4579ac;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -23,10 +23,11 @@
 }
 
 .Page-title {
-  font-size: 50px;
+  font-size: 40px;
   font-weight: bold;
   text-align: center;
   margin-top: 0px;
+  margin-bottom: 10px;
 }
 
 .Time-text {
@@ -72,6 +73,8 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
+  height: 45px;
+  margin-top: -3px;
 }
 
 .Times-container-div {
